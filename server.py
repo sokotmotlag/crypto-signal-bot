@@ -1,5 +1,6 @@
 
 from http.server import BaseHTTPRequestHandler, HTTPServer
+import os
 import json
 import urllib.request
 import urllib.parse
@@ -56,4 +57,4 @@ class Handler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(body)
 
-HTTPServer(("0.0.0.0", 8000), Handler).serve_forever()
+HTTPServer(("0.0.0.0", int(os.environ.get("PORT", 8000))), Handler).serve_forever()
